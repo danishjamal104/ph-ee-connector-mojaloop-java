@@ -163,7 +163,7 @@ public class QuoteRoutes extends ErrorHandlerRouteBuilder {
 
         from("rest:PUT:/switch/quotes/{" + QUOTE_ID + "}/error")
                 .log(LoggingLevel.ERROR, "######## SWITCH -> PAYER - quote error")
-                .log(LoggingLevel.DEBUG,"Body: ${body}")
+                .log(LoggingLevel.INFO,"Body: ${body}")
                 .setProperty(QUOTE_FAILED, constant(true))
                 .process(quoteResponseProcessor)
                 .setBody(constant(null))
