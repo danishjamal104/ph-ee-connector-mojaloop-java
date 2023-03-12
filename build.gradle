@@ -7,7 +7,8 @@
 plugins {
     id 'java'
     id 'maven-publish'
-    id 'org.springframework.boot' version '2.7.3'
+    id 'eclipse'
+    id 'org.springframework.boot' version '2.6.2'
 }
 apply plugin: 'java'
 apply plugin: 'io.spring.dependency-management'
@@ -24,39 +25,37 @@ repositories {
 }
 
 ext {
-    camelVersion = '3.18.1'
+    camelVersion = '3.12.0'
     zeebClientVersion = '1.3.1'
 }
 
 configurations.all {
-    resolutionStrategy {
-        force 'com.fasterxml.jackson.core:jackson-databind:2.4.6'
-    }
 }
 
 dependencies {
     implementation 'org.mifos:ph-ee-connector-common:1.2.2-SNAPSHOT'
-    implementation 'org.mifos:interop-ilp-conditions:1.7-SNAPSHOT'
+    implementation 'org.mifos:interop-ilp-conditions:1.7.1-SNAPSHOT'
     implementation "org.apache.camel.springboot:camel-spring-boot-starter:$camelVersion"
     implementation "org.apache.camel:camel-undertow:$camelVersion"
-    implementation 'org.apache.camel.springboot:camel-jackson-starter:3.16.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.9'
+    implementation "org.apache.camel.springboot:camel-jackson-starter:$camelVersion"
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.3'
     implementation "org.apache.camel:camel-http:$camelVersion"
     implementation "org.apache.camel:camel-endpointdsl:$camelVersion"
     implementation "org.apache.camel:camel-jetty:$camelVersion"
     implementation("io.camunda:zeebe-client-java:$zeebClientVersion")
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     implementation 'org.json:json:20210307'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation 'com.github.joschi.jackson:jackson-datatype-threetenbp:2.6.4'
 }
 
 group = 'org.mifos'
 version = '1.0.0-SNAPSHOT'
 description = 'ph-ee-connector-mojaloop-java'
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = '1.8'
 
 publishing {
     publications {
